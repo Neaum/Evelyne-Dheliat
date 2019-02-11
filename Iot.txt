@@ -1,0 +1,4 @@
+
+1 ville seulement 
+un pc envoie les info à l'antenne qui l'envoi sur un autre ordi pour faire un site web
+on recupere humidité, pression, température, precipitation, ensoleillement
