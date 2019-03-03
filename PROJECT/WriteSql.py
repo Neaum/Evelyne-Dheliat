@@ -10,16 +10,15 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     date = datetime.datetime.now().isoformat()
     realdate = date.split("T")
-    temp=float(msg.payload.split()[0])
-    hum=float(msg.payload.split()[1])
+    temp=(msg.payload.split()[0])
+    hum=(msg.payload.split()[1])
     f = open("meteo.txt","a")
-    f.write("'"+realdate[0]+"'"+" "+temp+" "+hum+"\n" )
+    f.write("'"+realdate[0]+"'"+" "+str(temp.decode("utf-8"))+" "+str(hum.decode("utf-8"))+"\n")
     f.close()
-    conn.commit()
 
 
 client=mqtt.Client()
 client.on_connect=on_connect
 client.on_message=on_message
-client.connect("192.168.43.136",1883,60)
+client.connect("192.168.1.10",1883,60)
 client.loop_forever()
