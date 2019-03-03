@@ -17,8 +17,7 @@
 			$dates=array();
 			$temp=array();
 			$hum=array();
-            $monfichier = fopen('D:/Bureau/meteo.txt', 'r+');
-
+            $monfichier = fopen('./meteo.txt', 'r+');
             //Traitement
             for ($i = 0; $i <7; $i++) {
                 $ligne = fgets($monfichier);
