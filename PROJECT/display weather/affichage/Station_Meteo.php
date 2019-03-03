@@ -17,7 +17,7 @@
 			$dates=array();
 			$temp=array();
 			$hum=array();
-            $monfichier = fopen('./meteo.txt', 'r+');
+            $monfichier = fopen('C:\Users\tangl\OneDrive\Documents\M1\JAVA\Projet JAVA\TENNISJAVA\TENNISJAVA\Evelyne-Dheliat\PROJECT', 'r+');
             //Traitement
             for ($i = 0; $i <7; $i++) {
                 $ligne = fgets($monfichier);
