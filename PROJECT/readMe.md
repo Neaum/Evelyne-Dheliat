@@ -56,17 +56,16 @@ Afin de procéder au bon fonctionnement du programme, il faut suivre ces quelque
 2. Lancer le programme arduino Capteur_2.ino en notant l'id du device qui s'affiche sur la console
 
 **Sur un deuxième PC-1:**
-1. Lancer un serveur mosquitto et récuperer l'adresse IP de ce PC
+1. Lancer un serveur mosquitto et récuperer l'adresse **IP** de ce PC
 2. Lancer également Ngrok, et dans l'invite de commande qui apparait executer la commande : **ngrok http 5000 -region eu**
 3. Aller sur le site: https://backend.sigfox.com/
-4. Trouver votre device id et créer un nouveau callback: (remplacer l'URL pattern par celui donner par votre Ngrok)
+4. Trouver votre device id et créer un nouveau callback: (remplacer l'URL pattern par celui donné par votre Ngrok)
 ![fig_2.PNG](fig_2.PNG)
 
-3. Lancer ensuite le programme LoLin_Sigfox.py
+3. Une fois le callback configuré, lancer finalement le programme **LoLin_Sigfox.py**
 
 **Sur un troisième PC-3:**
 1. Lancer WampServer
-2. 
-
-Lancer le programme WriteSql.py en ayant au préalable modifier l'adresse IP avec celle récuperer avant à la ligne 75
-2. 
+2. Copier dans votre dossier Wamp le dossier **Code_Php**
+3. Dans le fichier **Station_Meteo.php**, modifier le chemin d'accès à la database **meteo.txt** avec celui créé à l'emplacement du programme **WriteSql.py** (ligne 20)
+4. Lancer le programme **WriteSql.py** en ayant au préalable modifier l'adresse **IP** à la ligne 75 avec celle récupéré auparavant.
