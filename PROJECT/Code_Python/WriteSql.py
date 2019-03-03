@@ -7,12 +7,12 @@ def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
     client.subscribe("#")
 
-def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
-    valeur=str(msg.topic)
+def on_message(client, userdata, msg):      #Sur reception d'un message
+    print(msg.topic+" "+str(msg.payload))       #Affichage du message
+    valeur=str(msg.topic)                       #Recuperation et traitement des data : ex: 1527=>temp=15,hum=27=>temp=21,hum=39
     tem=valeur[:2]
     hu=valeur[2:]
-    date = datetime.datetime.now().isoformat()
+    date = datetime.datetime.now().isoformat()  #Recuperation de l'heure d'arrivée du message
     realdate = date.split("T")
     realdate="'"+realdate[0]+"'"
     temp=int(tem,16)
@@ -20,7 +20,7 @@ def on_message(client, userdata, msg):
     fr=open("meteo.txt","r")
     contenu=""
     j=0
-    for lignes in fr:
+    for lignes in fr:                       #Mise à jour de la database meteo.txt
         if(j==0):
             old=lignes
         elif(j!=6):
@@ -31,8 +31,8 @@ def on_message(client, userdata, msg):
         j=j+1
     fr.close()
     f = open("meteo.txt","w")
-    if(lastdate[1]==str(0)):   #Data on other  day
-        print("newd")
+    if(lastdate[1]==str(0)):   #Si la database n'a pas était déjà rempli
+        #print("newd")
         f.write(contenu)
         f.write(lastligne)
         f.write(realdate+" "+str(temp)+" "+str(hum)+"\n")    #Add new data
@@ -40,18 +40,18 @@ def on_message(client, userdata, msg):
         list_hum[:]=[]
         list_temp.append(float(temp))
         list_hum.append(float(hum))
-    elif(lastdate[0] != realdate):  #Still the init data
-        print("newi")
+    elif(lastdate[0] != realdate):  #Si le message ne concerne pas le même jour que la derniere valeur ajoutée
+        #print("newi")
         f.write(contenu)
         f.write(lastligne)
-        f.write(realdate+" "+str(temp)+" "+str(hum)+"\n")    #Add new data
+        f.write(realdate+" "+str(temp)+" "+str(hum)+"\n")    #Add new data and delete last line
         list_temp[:]=[]
         list_hum[:]=[]
         list_temp.append(float(temp))
         list_hum.append(float(hum))
-    else:   #Data on the same day
-        print("old")
-        list_temp.append(float(temp))
+    else:   #Si le message concerne le même que la dernière valeur ajoutée
+        #print("old")
+        list_temp.append(float(temp))   #On calcule la moyenne de température et d'humidité
         list_hum.append(float(hum))
         f.write(old)
         f.write(contenu)
@@ -64,10 +64,12 @@ if(os.path.isfile("meteo.txt")==False):
     for i in range(0,7):
         f.write("'"+(datetime.datetime.now().isoformat()).split("T")[0]+"'"+" "+str(0)+" "+str(0)+"\n")
     f.close()
-valeur=""
-list_temp=[]
-list_hum=[]
-client=mqtt.Client()
+
+valeur=""   #init variable
+list_temp=[]    #liste contenant les différentes valeurs de température sur une meme journée
+list_hum=[]     #idem avec l'humidité
+
+client=mqtt.Client()    #création du broker mqtt
 client.on_connect=on_connect
 client.on_message=on_message
 client.connect("192.168.1.10",1883,60)

@@ -15,7 +15,7 @@ def data():
 	if body == None:
 		return "not a json"
 	if 'data' in body.keys():
-		mqtt.single(body["data"])
+		mqtt.single(body["data"])		##Envoi des datas via MQTT vers PC 2
 
 
 	return jsonify(body)
