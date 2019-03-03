@@ -59,8 +59,8 @@ Afin de procéder au bon fonctionnement du programme, il faut suivre ces quelque
 1. Lancer un serveur mosquitto et récuperer l'adresse IP de ce PC
 2. Lancer également Ngrok, et dans l'invite de commande qui apparait executer la commande : **ngrok http 5000 -region eu**
 3. Aller sur le site: https://backend.sigfox.com/
-4. Trouver votre device id et créer un nouveau callback: 
-![fig_2.png](fig_2.png)
+4. Trouver votre device id et créer un nouveau callback: (remplacer l'URL pattern par celui donner par votre Ngrok)
+![fig_2.PNG](fig_2.PNG)
 
 3. Lancer ensuite le programme LoLin_Sigfox.py
 
