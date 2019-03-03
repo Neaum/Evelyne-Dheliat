@@ -1,4 +1,3 @@
-<!doctype html>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -15,13 +14,18 @@
 	<body>
 		<?php
             //Ouverture Fichier
+			$dates=array();
+			$temp=array();
+			$hum=array();
             $monfichier = fopen('D:/Bureau/meteo.txt', 'r+');
 
             //Traitement
             for ($i = 0; $i <7; $i++) {
                 $ligne = fgets($monfichier);
-                echo $ligne;
-                echo "<br>";
+                $mots=explode(" ", $ligne);
+                array_push($dates, $mots[0]);
+                array_push($temp, $mots[1]);
+                array_push($hum, $mots[2]);
             }
             //Fermeture Fichier
             fclose($monfichier);
@@ -33,14 +37,13 @@
 			Morris.Line({
 			  element: 'graph',
 			  data: [
-			    {x: '2019-02-20', y: 85, z: 10},
-			    {x: '2019-02-21', y: 75, z: 12},
-			    {x: '2019-02-22', y: 67, z: 15},
-			    {x: '2019-02-23', y: 50, z: 16},    
-			    {x: '2019-02-24', y: 85, z: 10},
-			    {x: '2019-02-25', y: 75, z: 12},
-			    {x: '2019-02-26', y: 67, z: 15},
-			    {x: '2019-02-27', y: 50, z: 16},
+			    {x: <?php echo $dates[0]?>, y: <?php echo (int)$hum[0]?>, z: <?php echo (int)$temp[0]?>},
+			    {x: <?php echo $dates[1]?>, y: <?php echo (int)$hum[1]?>, z: <?php echo (int)$temp[1]?>},
+			    {x: <?php echo $dates[2]?>, y: <?php echo (int)$hum[2]?>, z: <?php echo (int)$temp[2]?>},
+			    {x: <?php echo $dates[3]?>, y: <?php echo (int)$hum[3]?>, z: <?php echo (int)$temp[3]?>},    
+			    {x: <?php echo $dates[4]?>, y: <?php echo (int)$hum[4]?>, z: <?php echo (int)$temp[4]?>},
+			    {x: <?php echo $dates[5]?>, y: <?php echo (int)$hum[5]?>, z: <?php echo (int)$temp[5]?>},
+			    {x: <?php echo $dates[6]?>, y: <?php echo (int)$hum[6]?>, z: <?php echo (int)$temp[6]?>},
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y', 'z'],
