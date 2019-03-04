@@ -69,3 +69,10 @@ Afin de procéder au bon fonctionnement du programme, il faut suivre ces quelque
 2. Copier dans votre dossier Wamp le dossier **Code_Php**
 3. Lancer le programme **WriteSql.py** en ayant au préalable modifier l'adresse **IP** à la ligne 75 avec celle récupéré auparavant.
 4. Dans le fichier **Station_Meteo.php**, modifier le chemin d'accès à la database **meteo.txt** avec celui créé à l'emplacement du programme **WriteSql.py** (ligne 20)
+
+
+Résultat attendu après 7 jours de mesures:
+--
+
+Simulé en changeant manuellement la date de l'ordinateur.
+![fig_final.png](fig_final.png)
