@@ -71,7 +71,7 @@ Afin de procéder au bon fonctionnement du programme, il faut suivre ces quelque
 4. Dans le fichier **Station_Meteo.php**, modifier le chemin d'accès à la database **meteo.txt** avec celui créé à l'emplacement du programme **WriteSql.py** (ligne 20)
 
 
-Résultat attendu après 7 jours de mesures:
+Résultat attendu après 7 jours de mesure:
 --
 
 Simulé en changeant manuellement la date de l'ordinateur.
